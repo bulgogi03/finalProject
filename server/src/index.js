@@ -17,8 +17,6 @@ app.post("/createAccount", async (req, res) => {//a route in express
         const userId = uuidv4(); //gives users unique ids that are completely random
         const hashedPassword = await bcrypt.hash(password, 10); //adds salt into the password then hashes it
         const token = serverClient.createToken(userId);//creates a token that will identify the user
-        console.log("Response Data:", {token, userId, firstName, lastName, username, hashedPassword});
-
         res.json({token, userId, firstName, lastName, username, hashedPassword});
     }
     catch (error){
