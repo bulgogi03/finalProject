@@ -48,5 +48,4 @@ function Login({setIsAuth}) {
   );
 }
 
-
 export default Login;
