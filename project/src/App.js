@@ -14,7 +14,7 @@ function App() {
     client.connectUser({
       id: cookies.get("userId"),
       name: cookies.get("username"),
-      first: cookies.get("firstName"),
+      firstName: cookies.get("firstName"),
       lastName: cookies.get("lastName"),
       hashedPassword: cookies.get("hashedPassword")
     },

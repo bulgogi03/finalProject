@@ -8,13 +8,15 @@ function Login() {
 
   const cookies = new Cookies();
   const login = () => {
-    Axios.post("http://localhost:3001/login", {username, password,}).then(res =>{ //change the route based on server/src/index.js route
-      const {firstName, lastName, username, token, userId} = res.data;//set cookies for them
-      cookies.set("token", token);
-      cookies.set("userId", userId);
-      cookies.set("firstName", firstName);
-      cookies.set("lastName", lastName);
-      cookies.set("username", username);
+    Axios.post("http://localhost:3001/login", {username, password}).then(res => {
+      const { firstName, lastName, username, token, userId } = res.data;
+      console.log("Received Data:", res.data); // Log the received data
+      cookies.set("token", token, { path: "/" });
+      cookies.set("userId", userId, { path: "/" });
+      cookies.set("firstName", firstName, { path: "/" });
+      cookies.set("lastName", lastName, { path: "/" });
+      cookies.set("username", username, { path: "/" });
+      console.log("Cookies:", cookies.getAll()); // Log all cookies
     });
   };
 
