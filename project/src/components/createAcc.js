@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import Cookies from "universal-cookie";
 
-function CreateAcc() {
+function CreateAcc({setIsAuth}) {
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
   const createAcc = () => {
@@ -14,6 +14,7 @@ function CreateAcc() {
       cookies.set("lastName", lastName);
       cookies.set("username", username);
       cookies.set("hashedPassword", hashedPassword);//sets the cookies only if the user has account
+      setIsAuth(true);
     });//change link depending on what we use
   };
   return (
