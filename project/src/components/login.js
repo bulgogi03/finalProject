@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Axios from "axios";
 import Cookies from "universal-cookie";
 
-function Login() {
+function Login({setIsAuth}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const cookies = new Cookies();
   const login = () => {
-    Axios.post("http://localhost:3001/login", {username, password}).then(res => {
+    Axios.post("http://localhost:3001/login", {username, password}).then(res => {//sets the cookies for user when they login
       const { firstName, lastName, username, token, userId } = res.data;
       console.log("Received Data:", res.data);
       cookies.set("token", token, { path: "/" });
@@ -17,6 +17,7 @@ function Login() {
       cookies.set("lastName", lastName, { path: "/" });
       cookies.set("username", username, { path: "/" });
       console.log("Cookies:", cookies.getAll());
+      setIsAuth(true);
     }).catch(error => {
       if (error.response.status === 401) {
           console.error("Incorrect username or password"); // Updated error message
