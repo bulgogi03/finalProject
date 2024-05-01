@@ -10,13 +10,19 @@ function Login() {
   const login = () => {
     Axios.post("http://localhost:3001/login", {username, password}).then(res => {
       const { firstName, lastName, username, token, userId } = res.data;
-      console.log("Received Data:", res.data); // Log the received data
+      console.log("Received Data:", res.data);
       cookies.set("token", token, { path: "/" });
       cookies.set("userId", userId, { path: "/" });
       cookies.set("firstName", firstName, { path: "/" });
       cookies.set("lastName", lastName, { path: "/" });
       cookies.set("username", username, { path: "/" });
-      console.log("Cookies:", cookies.getAll()); // Log all cookies
+      console.log("Cookies:", cookies.getAll());
+    }).catch(error => {
+      if (error.response.status === 401) {
+          console.error("Incorrect username or password"); // Updated error message
+      } else {
+          console.error("An error occurred:", error.message);
+      }
     });
   };
 
