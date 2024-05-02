@@ -4,6 +4,8 @@ import CreateAcc from './components/createAcc.js';
 import Login from './components/login.js';
 import {StreamChat} from "stream-chat";
 import Cookies from "universal-cookie";
+import JoinGame from './components/JoinGame';
+import {Chat} from "stream-chat-react";
 
 function App() {
   const api_key = "qud777xuvfy9";//got from the backend
@@ -40,7 +42,10 @@ function App() {
   return (
     <div className="App">
       {isAuth ? (//checks the user if they are logged in
-        <button onClick={logOut}>Log Out</button>
+        <Chat client={client}> 
+          <JoinGame />
+          <button onClick={logOut}>Log Out</button>
+        </Chat> 
       ) :  (//if false then it runs these two things login and createAcc
         <>
           <CreateAcc setIsAuth={setIsAuth}/>
