@@ -52,8 +52,6 @@ function App() {
           <Login setIsAuth={setIsAuth}/>
         </>
       )}
-      <CreateAcc />
-      <Login />
     </div>
   );
 }
