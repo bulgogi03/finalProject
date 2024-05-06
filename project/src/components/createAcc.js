@@ -49,7 +49,7 @@ function CreateAcc({setIsAuth}) {
     <div className = "title">       {/*title top of container */}
       <div className = "text">Create Account</div>
     </div>
-    <div className = "middle">      {/*middle where the inputs go */}
+    <div className = "middle1">      {/*middle where the inputs go */}
       <div className = "input">
           {/* <input type="text" class="userinput1" placeholder="Username"></input> */}
           <TextField onChange={(event) =>{setUser({...user, firstName: event.target.value})}} id="outlined-basic" label="First Name" variant="outlined" style={{width: 300}} />
