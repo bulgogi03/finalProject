@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useChatContext, Channel} from 'stream-chat-react';
 import Game from './Game';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 function JoinGame() {
   const [opponent, setOpponent] =useState("");
@@ -44,3 +46,4 @@ function JoinGame() {
 }
 
 export default JoinGame
+

@@ -36,7 +36,7 @@ function CreateAcc({setIsAuth}) {
     //     onChange={(event) =>{
     //       setUser({...user, username: event.target.value})
     //     }}/>
-    //     <input placeholder="Password" 
+    //     <input placeholder="Password"
     //     type = "password"
     //     onChange={(event) =>{
     //       setUser({...user, password: event.target.value})
@@ -47,7 +47,7 @@ function CreateAcc({setIsAuth}) {
   // )
   <div className = "container2">
     <div className = "title">       {/*title top of container */}
-      <div className = "text">Login</div>
+      <div className = "text">Create Account</div>
     </div>
     <div className = "middle">      {/*middle where the inputs go */}
       <div className = "input">
