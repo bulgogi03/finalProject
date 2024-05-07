@@ -41,7 +41,7 @@ function JoinGame() {
           <TextField onChange={(event) => {setOpponent(event.target.value);}} id="outlined-basic" label="Enter Opponent" variant="outlined" style={{width: 300}} />
         </div>
         <div className = "inputButton">
-          <Button onClick={createChannel}>Start Game</Button>
+          <Button onClick={createChannel} variant="contained">Start Game</Button>
         </div>
       </div>
     </div>

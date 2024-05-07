@@ -46,7 +46,7 @@ function App() {
         {isAuth ? (//checks the user if they are logged in
           <Chat client={client}> 
             <JoinGame />
-            <Button onClick={logOut} variant="container">Log Out</Button>
+            <Button onClick={logOut} variant="contained">Log Out</Button>
           </Chat> 
         ) :  (//if false then it runs these two things login and createAcc
           <>
