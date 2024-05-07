@@ -14,9 +14,12 @@ function Board({result, setResult}){
     const { client } = useChatContext();
 
     useEffect(() => {
-        checkWin();
-        checkTie();
-    }, [board])
+        if (!gameEnded) {
+            checkWin();
+            checkTie();
+        }
+    }, [board, gameEnded]);
+    
     
     const chooseSquare = async (square) => {
         if (gameEnded || turn !== player || board[square] !== "") {
@@ -37,22 +40,25 @@ function Board({result, setResult}){
     };
     
     const checkWin = () => {
-        Patterns.forEach((currPattern) => {
-            const firstPlayer = board[currPattern[0]];
-            if (firstPlayer === "") return;
-            let foundWinningPattern = true;
-            currPattern.forEach((idx) => {
-                if (board[idx] !== firstPlayer) {
-                    foundWinningPattern = false;
+        ["X", "O"].forEach((player) => { // Iterate over both players "X" and "O"
+            Patterns.forEach((currPattern) => {
+                const firstPlayer = board[currPattern[0]];
+                if (firstPlayer === "") return;
+                let foundWinningPattern = true;
+                currPattern.forEach((idx) => {
+                    if (board[idx] !== firstPlayer) {
+                        foundWinningPattern = false;
+                    }
+                });
+                if (foundWinningPattern && firstPlayer === player) { // Check if the winning pattern belongs to the current player
+                    alert("Winner: " + player);
+                    setResult({ winner: player, state: "won" });
+                    setGameEnded(true); // Game ended, prevent further moves
                 }
             });
-            if (foundWinningPattern) {
-                alert("Winner: " + firstPlayer);
-                setResult({ winner: firstPlayer, state: "won" });
-                setGameEnded(true); // Game ended, prevent further moves
-            }
         });
     }
+    
     
 
     const checkTie = () => {
