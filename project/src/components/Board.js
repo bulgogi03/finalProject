@@ -8,6 +8,7 @@ function Board({result, setResult}){
     const [board, setBoard] = useState(["","","","","","","","",""]);
     const [player, setPlayer] = useState("X");
     const [turn, setTurn] = useState("X");
+    const [gameEnded, setGameEnded] = useState(false); //checks if game ended
 
     const { channel } = useChannelStateContext();
     const { client } = useChatContext();
@@ -17,24 +18,26 @@ function Board({result, setResult}){
         checkTie();
     }, [board])
     
-    const chooseSquare = async (square) => {//function takes in a square to determine what gets changed
-        if (turn === player && board[square] === ""){
-            setTurn(player === "X" ? "O" : "X"); //if turn is X, make it O, otherwise turn is X's
+    const chooseSquare = async (square) => {
+        if (!gameEnded && turn === player && board[square] === "") {
+            setTurn(player === "X" ? "O" : "X");
             
             await channel.sendEvent({
                 type: "game-move",
-                data: {square: square, player},
+                data: { square: square, player },
             });
-
-            setBoard(board.map((val, idx) => { 
+    
+            setBoard(board.map((val, idx) => {
                 if (idx === square && val === "") {
-                    return player //return player because player is X/O
+                    return player;
                 }
-                return val
-            })
-            ); 
+                return val;
+            }));
+    
+            checkWin(); // Call checkWin after each move
         }
     }
+    
 
     const checkWin = () => {
         Patterns.forEach((currPattern) => {
@@ -63,6 +66,7 @@ function Board({result, setResult}){
         if (filled) {
             alert("Tie")
             setResult({winner: "none", state: "tie"});
+            setGameEnded(true);
         }
     }
 
