@@ -3,13 +3,34 @@ import cors from "cors";
 import {v4 as uuidv4} from "uuid"; //importing version 4 this helps to give users unique id
 import bcrypt from "bcrypt";
 import {StreamChat} from "stream-chat";
+import http from "http";
+import { Server as SocketIOServer } from "socket.io";
+
 const app = express();
+const server = http.createServer(app);
+const io = new SocketIOServer(server);
 
 app.use(cors());
 app.use(express.json());//be able to accept json from frontend
 const api_key = "qud777xuvfy9";//you get it from getstream.io
 const api_secret = "7kkpxfep64gfwxwy9qg4nj9gtqxyagzkytjq7v3zhu4pbumxxjxq8rjduc8hem3x"; //dont have this publicly on github
 const serverClient = StreamChat.getInstance(api_key, api_secret);//connects a user and creates an account in our stream server
+
+// WebSocket connection handling
+io.on("connection", (socket) => {
+    console.log("Client connected");
+  
+    // Listen for restart requests
+    socket.on("restart", (data) => {
+      console.log("Restart request received from player", data.player);
+      // Broadcast a message to notify the other player
+      socket.broadcast.emit("restart", { player: data.player });
+    });
+  
+    socket.on("disconnect", () => {
+      console.log("Client disconnected");
+    });
+  });
 
 app.post("/createAccount", async (req, res) => {//a route in express
     try{//in case errors occur
