@@ -1,7 +1,7 @@
 import './App.css';
-import Login from './components/login.js';
 import React, { useState } from 'react';
 import CreateAcc from './components/createAcc.js';
+import Login from './components/login.js';
 import {StreamChat} from "stream-chat";
 import Cookies from "universal-cookie";
 import JoinGame from './components/JoinGame';
