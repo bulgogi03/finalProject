@@ -46,6 +46,7 @@ function Login({setIsAuth}) {
             </div>
             <div className = "inputButton">
               <Button variant="container" onClick={login} >Login</Button>
+              <Button variant="container" onClick={createAccount} >Create Account</Button>
             </div>
         </div>
     </div>

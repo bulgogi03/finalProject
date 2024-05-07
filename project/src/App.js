@@ -14,6 +14,7 @@ function App() {
   const token = cookies.get("token");//if we can get it it means user logged in
   const client = StreamChat.getInstance(api_key);
   const [isAuth, setIsAuth] = useState(false);
+  const [showCreateAcc, setShowCreateAcc] = useState(false); // State to manage showing create account form
 
   const logOut = () => {
     cookies.remove("token");
@@ -40,6 +41,10 @@ function App() {
       setIsAuth(true);//sets auth to true to show user is logged in
     })//connects user with their account
   }
+  const toggleForm = () => {
+    setShowCreateAcc(!showCreateAcc);
+  };
+
   return (
     <div>
       <div className="App">
@@ -50,8 +55,14 @@ function App() {
           </Chat> 
         ) :  (//if false then it runs these two things login and createAcc
           <>
-            <CreateAcc setIsAuth={setIsAuth}/>
-            <Login setIsAuth={setIsAuth}/>
+            {showCreateAcc ? ( // Render create account form if showCreateAcc is true
+              <CreateAcc setIsAuth={setIsAuth} />
+            ) : (
+              <Login setIsAuth={setIsAuth} />
+            )}
+            <Button onClick={toggleForm} variant="container"> {/* Toggle button */}
+              {showCreateAcc ? 'Back to Login' : 'Create Account'}
+            </Button>
          </>
         )}
       </div>
