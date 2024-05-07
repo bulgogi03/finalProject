@@ -4,7 +4,7 @@ import Square from './Square'
 import { Patterns } from './WinningComponents'
 import "../Board.css";
 
-function Board(result, setResult){ 
+function Board({result, setResult}){ 
     const [board, setBoard] = useState(["","","","","","","","",""]);
     const [player, setPlayer] = useState("X");
     const [turn, setTurn] = useState("X");
@@ -16,14 +16,23 @@ function Board(result, setResult){
         checkWin();
         checkTie();
     }, [board])
-    const chooseSquare = (square) => {
+    
+    const chooseSquare = async (square) => {//function takes in a square to determine what gets changed
         if (turn === player && board[square] === ""){
             setTurn(player === "X" ? "O" : "X"); //if turn is X, make it O, otherwise turn is X's
+            
+            await channel.sendEvent({
+                type: "game-move",
+                data: {square: square, player},
+            });
+
             setBoard(board.map((val, idx) => { 
                 if (idx === square && val === "") {
                     return player //return player because player is X/O
                 }
-            })) 
+                return val
+            })
+            ); 
         }
     }
 
@@ -66,6 +75,7 @@ function Board(result, setResult){
                 if (idx === event.data.square && val === "") {
                     return event.data.player;
                 }
+                return val;
             })) 
         }
     })

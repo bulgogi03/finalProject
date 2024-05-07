@@ -7,7 +7,7 @@ function Game({channel}) {
   const [activePlayers, setActive] = useState(
     channel.state.watcher_count ===2
   );
-  const [result, setResult] = useState({winner: "none", state: "none"})
+  const [result, setResult] = useState({winner: "none", state: "none"});
   const [diceResult, setDiceResult] = useState(null);
 
   channel.on("user.watching.start", (event) => {
