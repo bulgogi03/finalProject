@@ -16,7 +16,7 @@ function Game({channel}) {
   }
   return (
     <div className = "container4">
-      <div className="text">Tic-Tac-Toe S.E.</div>
+      <Board />
     </div>
   )
 }
