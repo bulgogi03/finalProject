@@ -19,42 +19,41 @@ function Board({result, setResult}){
     }, [board])
     
     const chooseSquare = async (square) => {
-        if (!gameEnded && turn === player && board[square] === "") {
-            setTurn(player === "X" ? "O" : "X");
-            
-            await channel.sendEvent({
-                type: "game-move",
-                data: { square: square, player },
-            });
-    
-            setBoard(board.map((val, idx) => {
-                if (idx === square && val === "") {
-                    return player;
-                }
-                return val;
-            }));
-    
-            checkWin(); // Call checkWin after each move
+        if (gameEnded || turn !== player || board[square] !== "") {
+            // Return early if the game has ended, it's not the player's turn, or the square is already filled
+            return;
         }
-    }
     
-
+        setTurn(player === "X" ? "O" : "X");
+    
+        await channel.sendEvent({
+            type: "game-move",
+            data: { square: square, player },
+        });
+    
+        setBoard((prevBoard) =>
+            prevBoard.map((val, idx) => (idx === square && val === "" ? player : val))
+        );
+    };
+    
     const checkWin = () => {
         Patterns.forEach((currPattern) => {
-            const firstPlayer = board[currPattern[0]]
-            if (firstPlayer === "") return
+            const firstPlayer = board[currPattern[0]];
+            if (firstPlayer === "") return;
             let foundWinningPattern = true;
             currPattern.forEach((idx) => {
-                if(board[idx] != firstPlayer){
+                if (board[idx] !== firstPlayer) {
                     foundWinningPattern = false;
                 }
             });
             if (foundWinningPattern) {
-                alert("Winner", board[currPattern[0]])
-                setResult({winner: board[currPattern[0]], state: "won"});
+                alert("Winner: " + firstPlayer);
+                setResult({ winner: firstPlayer, state: "won" });
+                setGameEnded(true); // Game ended, prevent further moves
             }
-        })
+        });
     }
+    
 
     const checkTie = () => {
         let filled = true;
