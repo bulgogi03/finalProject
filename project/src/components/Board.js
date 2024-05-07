@@ -95,21 +95,21 @@ function Board(result, setResult){
             <div className = "row">
             <Square 
                     chooseSquare={() => {
+                        chooseSquare(7);
+                    }}
+                val={board[7]}
+                />
+                <Square 
+                    chooseSquare={() => {
+                        chooseSquare(8);
+                    }}
+                val={board[8]}
+                />
+                <Square 
+                    chooseSquare={() => {
                         chooseSquare(3);
                     }}
                 val={board[3]}
-                />
-                <Square 
-                    chooseSquare={() => {
-                        chooseSquare(4);
-                    }}
-                val={board[4]}
-                />
-                <Square 
-                    chooseSquare={() => {
-                        chooseSquare(5);
-                    }}
-                val={board[5]}
                 />
             </div>
             <div className = "row">
@@ -121,15 +121,15 @@ function Board(result, setResult){
                 />
                 <Square 
                     chooseSquare={() => {
-                        chooseSquare(7);
+                        chooseSquare(5);
                     }}
-                val={board[7]}
+                val={board[5]}
                 />
                 <Square 
                     chooseSquare={() => {
-                        chooseSquare(8);
+                        chooseSquare(4);
                     }}
-                val={board[8]}
+                val={board[4]}
                 />
             </div>
         </div>
