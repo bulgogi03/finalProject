@@ -40,21 +40,24 @@ function Board({result, setResult}){
     };
     
     const checkWin = () => {
-        Patterns.forEach((currPattern) => {
-          ["X", "O"].forEach((player) => {
-            const a = board[currPattern[0]];
-            const b = board[currPattern[1]];
-            const c = board[currPattern[2]];
-            
-            // Check if all three positions in currPattern contain the same player's mark
-            if (a === player && b === player && c === player) {
-              alert("Winner: " + player);
-              setResult({ winner: player, state: "won" });
-              setGameEnded(true); // Game ended, prevent further moves
-            }
-          });
+        ["X", "O"].forEach((player) => { // Iterate over both players "X" and "O"
+            Patterns.forEach((currPattern) => {
+                const firstPlayer = board[currPattern[0]];
+                if (firstPlayer === "") return;
+                let foundWinningPattern = true;
+                currPattern.forEach((idx) => {
+                    if (board[idx] !== firstPlayer) {
+                        foundWinningPattern = false;
+                    }
+                });
+                if (foundWinningPattern && firstPlayer === player) { // Check if the winning pattern belongs to the current player
+                    alert("Winner: " + player);
+                    setResult({ winner: player, state: "won" });
+                    setGameEnded(true); // Game ended, prevent further moves
+                }
+            });
         });
-      };
+    }
       
     
     
