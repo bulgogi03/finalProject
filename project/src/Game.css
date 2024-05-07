@@ -4,7 +4,7 @@ body{
     justify-content: center;
 }
 
-.container4{
+.gameContainer{
     position: absolute;
     box-shadow: 5px 5px 10px 2px rgba(187, 186, 186, 0.8);
     width: 900px;
@@ -12,6 +12,34 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.boardContainer{
+    position: absolute;
+    background-color: lightgray;
+    width: 575px;
+    height: 575px;
+    top: 10%;
+    left: 3%;
+}
+
+.diceContainer{
+    position: absolute;
+    background-color: lightgray;
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 72.5%;
+    font-size: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diceRollButton{
+    position: absolute;
+    top: 40%;
+    left: 80%;
 }
 
 .start{
