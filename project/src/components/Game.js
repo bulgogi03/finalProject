@@ -16,7 +16,7 @@ function Game({channel}) {
   }
   return (
     <div className = "container4">
-      <Board />
+      {/* <Board /> */}
     </div>
   )
 }
