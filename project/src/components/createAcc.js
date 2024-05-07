@@ -4,10 +4,18 @@ import Cookies from "universal-cookie";
 import '../createAcc.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import PasswordVis from './PasswordVis.js';
 
 function CreateAcc({setIsAuth}) {
   const cookies = new Cookies();
   const [user, setUser] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const createAcc = () => {
     Axios.post("http://localhost:3001/createAccount", user).then(res =>{ //change the route based on server/src/index.js route
       const {token, userId, firstName, lastName, username, hashedPassword} = res.data;//set cookies for them
@@ -25,7 +33,7 @@ function CreateAcc({setIsAuth}) {
     <div className = "title">       {/*title top of container */}
       <div className = "text">Create Account</div>
     </div>
-    <div className = "middle1">      {/*middle1 where the inputs go */}
+    <div className = "middle1">      {/*middle where the inputs go */}
       <div className = "input">
           {/* <input type="text" class="userinput1" placeholder="Username"></input> */}
           <TextField onChange={(event) =>{setUser({...user, firstName: event.target.value})}} id="outlined-basic" label="First Name" variant="outlined" style={{width: 300}} />
@@ -40,10 +48,25 @@ function CreateAcc({setIsAuth}) {
       </div>
       <div className = "input">
           {/* <input type="text" class="userinput" placeholder="Password"></input> */}
-          <TextField onChange={(event) =>{setUser({...user, password: event.target.value})}} id="outlined-basic" label="Password" variant="outlined" style={{width: 300}} />
+          <TextField 
+            onChange={(event) =>{setUser({...user, password: event.target.value})}} 
+            id="outlined-basic" 
+            label="Password" 
+            type={showPassword ? 'text' : 'password'} 
+            variant="outlined" 
+            style={{width: 300}} 
+            InputProps={{
+              endAdornment: (
+                <PasswordVis
+                  showPassword={showPassword}
+                  handleClickShowPassword={handleClickShowPassword}
+                  handleMouseDownPassword={handleMouseDownPassword}
+                />
+              )
+            }}/>
       </div>
       <div className = "inputButton">
-          <Button onClick={createAcc} variant="container">Create</Button>
+          <Button onClick={createAcc} variant="contained">Create</Button>
       </div>
     </div>
   </div>
