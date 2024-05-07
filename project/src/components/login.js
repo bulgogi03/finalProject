@@ -45,7 +45,7 @@ function Login({setIsAuth}) {
                 <TextField onChange={(event) => {setPassword(event.target.value);}} id="outlined-basic" label="Password" variant="outlined" style={{width: 300}} />
             </div>
             <div className = "inputButton">
-                <Button variant="container">Login</Button>
+                <Button variant="container" onClick={login} >Login</Button>
             </div>
         </div>
     </div>
