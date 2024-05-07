@@ -9,6 +9,8 @@ function Board({result, setResult}){
     const [player, setPlayer] = useState("X");
     const [turn, setTurn] = useState("X");
     const [gameEnded, setGameEnded] = useState(false); //checks if game ended
+    const [restartX, setRestartX] = useState(false);
+    const [restartO, setRestartO] = useState(false);
 
     const { channel } = useChannelStateContext();
     const { client } = useChatContext();
@@ -58,9 +60,7 @@ function Board({result, setResult}){
             });
         });
     }
-      
-    
-    
+
 
     const checkTie = () => {
         let filled = true;
@@ -89,6 +89,20 @@ function Board({result, setResult}){
             })) 
         }
     })
+    
+    const handleRestart = () => {
+        setBoard(["", "", "", "", "", "", "", "", ""]);
+        setPlayer(turn);
+        setGameEnded(false);
+        setRestartX(false);
+        setRestartO(false);
+        if (player === 'X') {
+            window.alert('Player O needs to click restart to play again.');
+        } else {
+            window.alert('Player X needs to click restart to play again.');
+        }
+    };
+    
 
     return(
         <div className = "board">
@@ -152,6 +166,16 @@ function Board({result, setResult}){
                 val={board[8]}
                 />
             </div>
+            {player === 'X' && !gameEnded && (
+                <button onClick={handleRestart} disabled={restartX}>
+                    Restart (X)
+                </button>
+            )}
+            {player === 'O' && !gameEnded && (
+                <button onClick={handleRestart} disabled={restartO}>
+                    Restart (O)
+                </button>
+            )}
         </div>
     )
 }
