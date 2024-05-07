@@ -17,8 +17,8 @@ body{
 .boardContainer{
     position: absolute;
     background-color: lightgray;
-    width: 575px;
-    height: 575px;
+    width: 576px;
+    height: 576px;
     top: 10%;
     left: 3%;
 }
