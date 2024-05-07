@@ -21,30 +21,6 @@ function CreateAcc({setIsAuth}) {
     });//change link depending on what we use
   };
   return (
-    // <div className="createAcc">
-    //   <div>Create Account:</div>
-    //     <input placeholder="First Name" 
-    //     onChange={(event) =>{
-    //       setUser({...user, firstName: event.target.value})  //...user --> keeps everything else the same but the firstname
-    //       //its going to constantly update the first name in the user object to whatever is typed
-    //     }}/>
-    //     <input placeholder="Last Name" 
-    //     onChange={(event) =>{
-    //       setUser({...user, lastName: event.target.value})
-    //     }}/>
-    //     <input placeholder="Username" 
-    //     onChange={(event) =>{
-    //       setUser({...user, username: event.target.value})
-    //     }}/>
-    //     <input placeholder="Password"
-    //     type = "password"
-    //     onChange={(event) =>{
-    //       setUser({...user, password: event.target.value})
-    //     }}/>
-    //     <button onClick={createAcc}> Create Account</button>
-    // </div>
-    
-  // )
   <div className = "container2">
     <div className = "title">       {/*title top of container */}
       <div className = "text">Create Account</div>

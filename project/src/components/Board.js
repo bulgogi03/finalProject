@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useChannelStateContext, useChatContext} from 'stream-chat-react'
 import Square from './Square'
 import { Patterns } from './WinningComponents'
+import "../Board.css";
 
 function Board(result, setResult){ 
     const [board, setBoard] = useState(["","","","","","","","",""]);

@@ -1,0 +1,10 @@
+.square{
+    display: grid;
+    flex: 33%;
+    background-color: white;
+    height: 192px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    place-items: center;
+    font-size: 180px;
+}
