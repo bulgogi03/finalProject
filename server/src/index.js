@@ -3,12 +3,14 @@ import cors from "cors";
 import {v4 as uuidv4} from "uuid"; //importing version 4 this helps to give users unique id
 import bcrypt from "bcrypt";
 import {StreamChat} from "stream-chat";
+require('dotenv').config();
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());//be able to accept json from frontend
-const api_key = "qud777xuvfy9";//you get it from getstream.io
-const api_secret = "7kkpxfep64gfwxwy9qg4nj9gtqxyagzkytjq7v3zhu4pbumxxjxq8rjduc8hem3x"; //dont have this publicly on github
+const api_key = process.env.API_KEY;
+const api_secret = process.env.API_SECRET;
 const serverClient = StreamChat.getInstance(api_key, api_secret);//connects a user and creates an account in our stream server
 
 app.post("/createAccount", async (req, res) => {//a route in express

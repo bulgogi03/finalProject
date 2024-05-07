@@ -1,0 +1,11 @@
+{
+    "name": "finalProject",
+    "version": 2,
+    "builds": [
+      {
+        "src": "server/src/index.js",
+        "use": "@vercel/node"
+      }
+    ]
+  }
+  
