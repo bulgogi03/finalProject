@@ -9,7 +9,7 @@ import {Chat} from "stream-chat-react";
 import Button from '@mui/material/Button';
 
 function App() {
-  const api_key = "qud777xuvfy9";//got from the backend
+  const api_key = process.env.REACT_APP_API_KEY;//got from the backend
   const cookies = new Cookies();
   const token = cookies.get("token");//if we can get it it means user logged in
   const client = StreamChat.getInstance(api_key);
