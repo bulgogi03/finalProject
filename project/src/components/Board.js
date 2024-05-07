@@ -59,7 +59,7 @@ function Board({result, setResult}){
             if (square === ""){
                 filled = false;
             }
-        })
+        });
         if (filled) {
             alert("Tie")
             setResult({winner: "none", state: "tie"});
