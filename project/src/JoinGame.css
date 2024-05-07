@@ -4,13 +4,13 @@ body{
     justify-content: center;
 }
 
-.container{
+.container3{
     position: absolute;
     box-shadow: 5px 5px 10px 2px rgba(187, 186, 186, 0.8);
     width: 500px;
     height: 500px;
     top: 50%;
-    left: 25%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 

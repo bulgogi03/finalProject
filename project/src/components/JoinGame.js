@@ -3,6 +3,7 @@ import {useChatContext, Channel} from 'stream-chat-react';
 import Game from './Game';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import '../JoinGame.css';
 
 function JoinGame() {
   const [opponent, setOpponent] =useState("");
@@ -31,14 +32,18 @@ function JoinGame() {
       </Channel>
       )//condition of if channel is not null it shows start
     :(//if channel is null it shows this
-    <div className="joinGame">
-      <h4>Create Game</h4>
-      <input placeholder = "Enter Opponent" //lets user type in a random players name to send a request to them
-      onChange={(event) => {
-        setOpponent(event.target.value);
-        }} 
-      />
-      <button onClick={createChannel}> Start Game </button>
+    <div className = "container3">
+      <div className = "title">
+        <div className = "text">Enter Opponent</div>
+      </div>
+      <div className = "middle">
+        <div className = "input">
+          <TextField onChange={(event) => {setOpponent(event.target.value);}} id="outlined-basic" label="Enter Opponent" variant="outlined" style={{width: 300}} />
+        </div>
+        <div className = "inputButton">
+          <Button onClick={createChannel}>Start Game</Button>
+        </div>
+      </div>
     </div>
     )}
     </>

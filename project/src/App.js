@@ -6,6 +6,7 @@ import {StreamChat} from "stream-chat";
 import Cookies from "universal-cookie";
 import JoinGame from './components/JoinGame';
 import {Chat} from "stream-chat-react";
+import Button from '@mui/material/Button';
 
 function App() {
   const api_key = "qud777xuvfy9";//got from the backend
@@ -45,7 +46,7 @@ function App() {
         {isAuth ? (//checks the user if they are logged in
           <Chat client={client}> 
             <JoinGame />
-            <button onClick={logOut}>Log Out</button>
+            <Button onClick={logOut} variant="container">Log Out</Button>
           </Chat> 
         ) :  (//if false then it runs these two things login and createAcc
           <>

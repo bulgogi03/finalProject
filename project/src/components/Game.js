@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Board from "./Board";
+import "../Game.css";
 
 function Game({channel}) {
   const [activePlayers, setActive] = useState(
@@ -15,7 +16,10 @@ function Game({channel}) {
   }
   return (
     <div className = "gameContainer">
-      <Board result={result} setResult={setResult}/>
+      <div className = "boardContainer">
+        <Board result={result} setResult={setResult}/>
+      </div>
+      <div className = "diceContainer"></div>
       { /* CHAT */}
       { /* Leave Game Button */}
     </div>
