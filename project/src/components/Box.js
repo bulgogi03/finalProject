@@ -1,11 +1,11 @@
-// import React from 'react'
+import React from 'react'
 
-// function Box({picked, sign }) {//returns the picked box and the value assigned to the box
-//   return (
-//     <div className="box" onClick={picked}>
-//         {sign}
-//     </div>
-//   )
-// }
+function Box({picked, sign }) {//returns the picked box and the value assigned to the box
+  return (
+    <div className="box" onClick={picked}>
+        {sign}
+    </div>
+  )
+}
 
-// export default Box
+export default Box
